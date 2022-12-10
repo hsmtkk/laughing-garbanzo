@@ -4,7 +4,9 @@ steps:
     args:
       - --cache=true
       - --cache-ttl=168h
+      - --context=ruby
       - --destination=${_REGION}-docker.pkg.dev/${PROJECT_ID}/registry:$COMMIT_SHA
+      - --dockerfile=ruby/Dockerfile
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
     entrypoint: gcloud
     args:
