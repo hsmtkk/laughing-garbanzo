@@ -15,5 +15,6 @@ steps:
       - --allow-unauthenticated
       - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/registry/rails:$COMMIT_SHA
       - --region=${_REGION}
+      - --update-secrets=SECRET_KEY_BASE=rails-secret:latest
 substitutions:
   _REGION: us-central1
