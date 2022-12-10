@@ -141,6 +141,8 @@ GEM
     timeout (0.3.1)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.7)
+      tzinfo (>= 1.0.0)
     webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -157,6 +159,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   rails (~> 6.1.7)
+  tzinfo-data
   webpacker
 
 BUNDLED WITH
