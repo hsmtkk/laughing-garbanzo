@@ -17,6 +17,17 @@ class MyStack extends TerraformStack {
       region,
     });
 
+    const runner = new google.serviceAccount.ServiceAccount(this, 'runner', {
+      accountId: 'runner',
+      displayName: 'service account for Cloud Run',
+    });
+
+    new google.projectIamMember.ProjectIamMember(this, '', {
+      member: `serviceAccount:${runner.email}`,
+      project,
+      role: 'roles/secretmanager.secretAccessor',
+    });
+
     new google.secretManagerSecret.SecretManagerSecret(this, 'rails-secret', {
       secretId: 'rails-secret',
       replication: {
@@ -50,6 +61,7 @@ class MyStack extends TerraformStack {
           containers: [{
             image: 'us-docker.pkg.dev/cloudrun/container/hello',
           }],
+          serviceAccountName: runner.email,
         },
       },
     });
