@@ -17,13 +17,8 @@ class MyStack extends TerraformStack {
       region,
     });
 
-    const runner = new google.serviceAccount.ServiceAccount(this, 'runner', {
-      accountId: 'runner',
-      displayName: 'service account for Cloud Run',
-    });
-
-    new google.projectIamMember.ProjectIamMember(this, '', {
-      member: `serviceAccount:${runner.email}`,
+    new google.projectIamMember.ProjectIamMember(this, 'compute-secret-access', {
+      member: 'serviceAccount:990845921550-compute@developer.gserviceaccount.com',
       project,
       role: 'roles/secretmanager.secretAccessor',
     });
@@ -61,7 +56,6 @@ class MyStack extends TerraformStack {
           containers: [{
             image: 'us-docker.pkg.dev/cloudrun/container/hello',
           }],
-          serviceAccountName: runner.email,
         },
       },
     });
