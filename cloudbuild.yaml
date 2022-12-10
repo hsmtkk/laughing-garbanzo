@@ -12,6 +12,7 @@ steps:
     args:
       - run
       - deploy
+      - rails
       - --allow-unauthenticated
       - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/registry/rails:$COMMIT_SHA
       - --region=${_REGION}
