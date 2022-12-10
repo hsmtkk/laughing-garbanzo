@@ -17,6 +17,13 @@ class MyStack extends TerraformStack {
       region,
     });
 
+    new google.secretManagerSecret.SecretManagerSecret(this, 'rails-secret', {
+      secretId: 'rails-secret',
+      replication: {
+        automatic: true,
+      },
+    });
+
     new google.artifactRegistryRepository.ArtifactRegistryRepository(this, 'registry', {
       format: 'docker',
       location: region,
